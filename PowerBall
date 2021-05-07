@@ -1,0 +1,228 @@
+import java.util.Random;
+/**
+ * Creates a PowerBallTicket
+ * 
+ * @author pathirathnags 
+ * @version 1
+ */
+public class PowerBall
+{
+    public static final int MAX_LOTTERY_NUMBER = 59;
+    public static final int MAX_POWER_BALL_NUMBER = 35;
+    private int number0;
+    private int number1;
+    private int number2;
+    private int number3;
+    private int number4;
+    private int powerBall;
+    private Random randomGenerator;
+
+    /**
+     * Constructor for objects of class PowerBall.
+     */
+    public PowerBall()
+    {
+        randomGenerator = new Random();
+        number0 = 0;
+        number1 = 0;
+        number2 = 0;
+        number3 = 0;
+        number4 = 0;
+        powerBall = 0;
+    }
+
+    /**
+     * @return randomGenerator number
+     */
+    public int generateLotteryNumber()
+    {
+        return randomGenerator.nextInt(MAX_LOTTERY_NUMBER) + 1;
+    }
+
+    /**
+     * @return randomGenerator number
+     */
+    public int generatePowerBallNumber()
+    {
+        return randomGenerator.nextInt(MAX_POWER_BALL_NUMBER) + 1;
+    }
+
+    /**
+     * @return randomGenerator number
+     */
+    public Random getRandomGenerator()
+    {
+        return randomGenerator;
+    }
+
+    /**
+     * @param x random
+     */
+    public void setRandomGenerator(Random x)
+    {
+        randomGenerator = x;
+    }
+
+    /**
+     * @return number0 random
+     */
+    public int getNumber0()
+    {
+        return number0;
+    }
+
+    /**
+     * @param number0 random
+     */
+    public void setNumber0(int number0)
+    {
+        this.number0 = number0;
+    }
+
+    /**
+     * @return number1 random
+     */
+    public int getNumber1()
+    {
+        return number1;
+    }
+
+    /**
+     * @param number1 random
+     */
+    public void setNumber1(int number1)
+    {
+        this.number1 = number1;
+    }
+
+    /**
+     * @return number2 random
+     */
+    public int getNumber2()
+    {
+        return number2;
+    }
+
+    /**
+     * @param number2 random
+     */
+    public void setNumber2(int number2)
+    {
+        this.number2 = number2;
+    }
+
+    /**
+     * @return number3 random
+     */
+    public int getNumber3()
+    {
+        return number3;
+    }
+
+    /**
+     * @param number3 random
+     */
+    public void setNumber3(int number3)
+    {
+        this.number3 = number3;
+    }
+
+    /**
+     * @return number4 random
+     */
+    public int getNumber4()
+    {
+        return number4;
+    }
+
+    /**
+     * @param number4 random
+     */
+    public void setNumber4(int number4)
+    {
+        this.number4 = number4;
+    }
+
+    /**
+     * @return powerBall random
+     */
+    public int getPowerBall()
+    {
+        return powerBall;
+    }
+
+    /**
+     * @param powerBall random
+     */
+    public void setPowerBall(int powerBall)
+    {
+        this.powerBall = powerBall;
+    }
+
+    /**
+     * @return boolean newNumber
+     * @param newNumber random
+     */
+    public boolean isDuplicateLotteryNumber(int newNumber)
+    {
+        return newNumber == number0
+             || newNumber == number1
+             || newNumber == number2
+             || newNumber == number3
+             || newNumber == number4;
+    }
+    
+    /**
+     * @return r generateLotteryNumber
+     */
+    public int nextLotteryNumber()
+    {
+        int r = generateLotteryNumber();
+        while (r == number0
+               || r == number1
+               || r == number2
+               || r == number3
+               || r == number4)
+        {
+            r = generateLotteryNumber(); 
+        }
+        return r;
+    }
+
+    /**
+     * 
+     */
+    public void reset()
+    {
+        number0 = 0;
+        number1 = 0;
+        number2 = 0;
+        number3 = 0;
+        number4 = 0;
+        powerBall = 0;
+    }
+
+    /**
+     * 
+     */
+    public void generateLotteryPicks()
+    {
+        reset();
+        setNumber0(nextLotteryNumber());
+        setNumber1(nextLotteryNumber());
+        setNumber2(nextLotteryNumber());
+        setNumber3(nextLotteryNumber());
+        setNumber4(nextLotteryNumber());
+        setPowerBall(generatePowerBallNumber());
+    }
+
+    /**
+     * @return String formated
+     */
+    public String toString()
+    {
+        return String.format("%02d, %02d, %02d, %02d, %02d, Powerball %02d",
+            getNumber0(), getNumber1(), getNumber2(), 
+            getNumber3(), getNumber4(), getPowerBall());
+    }
+}
