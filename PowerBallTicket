@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.IOException;
+//import java.io.File;
+/**
+ * Propts user for PowerBall ticket.
+ *
+ * @author pathirathnags
+ * @version 1
+ */
+public class PowerBallTicket
+{
+    /**
+     * @param args main
+     * @throws IOException 
+     */
+    public static void main(String[] args) throws IOException
+    {
+        Scanner kb = new Scanner(System.in);
+        PowerBall powerBall = new PowerBall();
+
+        System.out.println("Give a file name: ");
+        String filename = kb.nextLine();
+
+        System.out.println("How many PowerBall tickets do you want?");
+        int amount = kb.nextInt();
+
+        
+        PrintWriter outputFile = new PrintWriter(filename);
+
+        for (int i = 0; i < amount; i++)
+        {
+            powerBall.generateLotteryPicks();
+            outputFile.println(powerBall.toString());
+        }
+        
+        outputFile.close();
+
+    }
+
+}
